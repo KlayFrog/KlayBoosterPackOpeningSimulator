@@ -1,36 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Klay's Booster Pack Opening Simulator</title>
-    <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-        }
-
-        .imageContainer {
-            display: flex;
-            justify-content: center;
-            margin-top: 10px;
-        }
-
-        .imageContainer img {
-            display: none;
-            margin: 5px;
-        }
-
-        #openPackButton {
-            display: none;
-            margin-top: 10px;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="style.css">
     <script>
         window.onload = function () {
             var images = [];
@@ -109,17 +83,19 @@
         };
     </script>
 </head>
-
 <body>
     <img id="mainImage">
-    <div class="imageContainer"></div>
-    <div class="imageContainer"></div>
-    <div class="imageContainer"></div>
-    <div class="imageContainer"></div>
-    <div class="imageContainer"></div>
-    <div class="imageContainer"></div>
-    <div class="imageContainer"></div>
+    <div class="container-row">
+        <div class="imageContainer"></div>
+        <div class="imageContainer"></div>
+        <div class="imageContainer"></div>
+        <div class="imageContainer"></div>
+    </div>
+    <div class="container-row">
+        <div class="imageContainer"></div>
+        <div class="imageContainer"></div>
+        <div class="imageContainer"></div>
+    </div>
     <button id="openPackButton">Open a new pack</button>
 </body>
-
 </html>

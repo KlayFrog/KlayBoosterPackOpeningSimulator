@@ -1,0 +1,29 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container-row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.imageContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.imageContainer img {
+    display: none;
+    margin: 5px;
+}
+
+#openPackButton {
+    display: none;
+    margin-top: 10px;
+}
