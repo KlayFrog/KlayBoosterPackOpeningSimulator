@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Klay's Booster Pack Opening Simulator</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .imageContainer {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .imageContainer img {
+            display: none;
+            margin: 5px;
+        }
+
+        #openPackButton {
+            display: none;
+            margin-top: 10px;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var images = [];
+            for (var i = 1; i <= 16; i++) {
+                images.push('image' + i + '.png');
+            }
+
+            var specialImages = [];
+            for (var i = 1; i <= 10; i++) {
+                specialImages.push('special' + i + '.png');
+            }
+
+            var energyImages = [];
+            for (var i = 1; i <= 7; i++) {
+                energyImages.push('energy' + i + '.png');
+            }
+
+            var imageElement = document.getElementById('mainImage');
+            var cardbackContainers = document.querySelectorAll('.imageContainer');
+            var openPackButton = document.getElementById('openPackButton');
+
+            imageElement.src = 'mainImage.png';
+            imageElement.style.display = 'block';
+
+            imageElement.onclick = function () {
+                this.style.display = 'none';
+                displayImages();
+                openPackButton.style.display = 'block';
+            };
+
+            openPackButton.onclick = function () {
+                resetImages();
+                displayImages();
+            };
+
+            function resetImages() {
+                for (var i = 0; i < cardbackContainers.length; i++) {
+                    cardbackContainers[i].innerHTML = '';
+                }
+            }
+
+            function displayImages() {
+                displayCardbackImages(["cardbackCommon.png"], cardbackContainers[0]);
+                displayCardbackImages(["cardbackCommon.png"], cardbackContainers[1]);
+                displayCardbackImages(["cardbackCommon.png"], cardbackContainers[2]);
+                displayCardbackImages(["cardbackCommon.png"], cardbackContainers[3]);
+                displayCardbackImages(["cardbackCommon.png"], cardbackContainers[4]);
+                displayCardbackImages(["cardbackSpecial.png"], cardbackContainers[5]);
+                displayCardbackImages(["cardbackEnergy.png"], cardbackContainers[6]);
+            }
+
+            function displayCardbackImages(imageArray, container) {
+                container.style.display = 'flex';
+
+                for (var i = 0; i < imageArray.length; i++) {
+                    var newImageElement = document.createElement('img');
+                    newImageElement.src = imageArray[i];
+                    newImageElement.style.display = 'block';
+                    container.appendChild(newImageElement);
+
+                    newImageElement.onclick = function () {
+                        var randomIndex;
+                        if (this.src.includes('cardbackCommon.png')) {
+                            randomIndex = Math.floor(Math.random() * images.length);
+                            this.src = images[randomIndex];
+                        } else if (this.src.includes('cardbackSpecial.png')) {
+                            randomIndex = Math.floor(Math.random() * specialImages.length);
+                            this.src = specialImages[randomIndex];
+                        } else if (this.src.includes('cardbackEnergy.png')) {
+                            randomIndex = Math.floor(Math.random() * energyImages.length);
+                            this.src = energyImages[randomIndex];
+                        }
+                    };
+                }
+            }
+        };
+    </script>
+</head>
+
+<body>
+    <img id="mainImage">
+    <div class="imageContainer"></div>
+    <div class="imageContainer"></div>
+    <div class="imageContainer"></div>
+    <div class="imageContainer"></div>
+    <div class="imageContainer"></div>
+    <div class="imageContainer"></div>
+    <div class="imageContainer"></div>
+    <button id="openPackButton">Open a new pack</button>
+</body>
+
+</html>
