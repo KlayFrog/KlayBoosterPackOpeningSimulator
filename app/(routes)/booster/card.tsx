@@ -14,7 +14,8 @@ export type BoosterCardProps = {
 
 export const BoosterCard = ({ card, onFlip }: BoosterCardProps) => {
   const [displayedSide, setDisplayedSide] = useState<"front" | "back">("back");
-
+  const [allCardsFlipped, setAllCardsFlipped] = useState(false);
+ 
   return (
     <div
       className={cn(
@@ -25,8 +26,10 @@ export const BoosterCard = ({ card, onFlip }: BoosterCardProps) => {
         }
       )}
       onClick={() => {
-        setDisplayedSide("front");
-        onFlip?.();
+        if (!allCardsFlipped) {
+          setDisplayedSide("front");
+          onFlip?.();
+        }
       }}
     >
       <Image
@@ -43,9 +46,12 @@ export const BoosterCard = ({ card, onFlip }: BoosterCardProps) => {
         height={96}
         className={cn("pixelated absolute inset-0", styles.cardBack)}
       />
+      <button onClick={() => setAllCardsFlipped(true)} disabled={allCardsFlipped}>
+        Flip All Cards
+      </button>
     </div>
   );
-};
+ };
 
 const getCardImageDirectory = (card: CardType) => {
   switch (card.category) {
