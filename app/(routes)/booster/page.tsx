@@ -38,7 +38,7 @@ export default function BoosterIndex() {
  const [state, dispatch] = useReducer(reducer, initialState);
 
  const handleCardFlip = (isFlipped: boolean) => {
-   if (state.cards.every(card => card.oneCardFlipped)) {
+   if (isFlipped) {
      dispatch({ type: "flipCard" });
    }
  };
