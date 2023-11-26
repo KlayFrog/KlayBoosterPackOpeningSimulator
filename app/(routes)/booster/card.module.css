@@ -1,0 +1,19 @@
+.cardFront {
+  backface-visibility: hidden;
+}
+
+.cardBack {
+  transform: rotateY(180deg);
+  backface-visibility: hidden;
+}
+
+.cardContainer {
+  transform-style: preserve-3d;
+  transform: perspective(23rem);
+  cursor: auto;
+}
+
+.cardContainer.cardShowBack {
+  transform: perspective(23rem) rotateY(180deg);
+  cursor: pointer;
+}
