@@ -4,3 +4,7 @@ export type CardType = {
   category: CardCategoryType;
   id: number;
 };
+
+export type FlippableCardType = CardType & {
+  flipped: boolean;
+};
