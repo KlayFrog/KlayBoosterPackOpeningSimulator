@@ -8,7 +8,7 @@ import { v4 as uuidv4 } from "uuid";
 import { CardType } from "./card.model";
 
 type BoosterState = {
- cards: (CardType & { key: string })[];
+ cards: (CardType & { key: string, isFlipped: boolean })[];
  oneCardFlipped: boolean;
 };
 
@@ -16,54 +16,59 @@ type BoosterAction = { type: "flipCard" } | { type: "openNewPack" };
 
 function reducer(state: BoosterState, action: BoosterAction): BoosterState {
  switch (action.type) {
- case "flipCard":
-   return { ...state, oneCardFlipped: true };
- case "openNewPack":
-   return {
-     ...state,
-     cards: getRandomBooster().map((card) => ({ ...card, key: uuidv4() })),
-     oneCardFlipped: false,
-   };
- default:
-   throw new Error();
+  case "flipCard":
+    return { ...state, oneCardFlipped: true };
+  case "openNewPack":
+    return {
+      ...state,
+      cards: getRandomBooster().map((card) => ({ ...card, key: uuidv4(), isFlipped: false })),
+      oneCardFlipped: false,
+    };
+  default:
+    throw new Error();
  }
 }
 
 const initialState: BoosterState = {
- cards: getRandomBooster().map((card) => ({ ...card, key: uuidv4() })),
+ cards: getRandomBooster().map((card) => ({ ...card, key: uuidv4(), isFlipped: false })),
  oneCardFlipped: false,
 };
 
 export default function BoosterIndex() {
  const [state, dispatch] = useReducer(reducer, initialState);
 
- const handleCardFlip = (isFlipped: boolean) => {
- if (isFlipped && state.cards.every(card => card.isFlipped)) {
-   dispatch({ type: "flipCard" });
- }
+ const handleCardFlip = (cardKey: string, isFlipped: boolean) => {
+  if (isFlipped) {
+    const cards = state.cards.map(card => 
+      card.key === cardKey ? { ...card, isFlipped: true } : card
+    );
+    if (cards.every(card => card.isFlipped)) {
+      dispatch({ type: "flipCard" });
+    }
+  }
  };
 
  return (
- <main className="w-full h-full flex flex-col justify-center items-center gap-3">
-   <div className="flex flex-wrap gap-3 max-w-[600px] items-center justify-center">
-     {state.cards.map((card) => (
-       <BoosterCard
-         key={card.key}
-         card={card}
-         onFlip={handleCardFlip}
-       />
-     ))}
-   </div>
-   <Button
-     onClick={() =>
-       dispatch({
-         type: "openNewPack",
-       })
-     }
-     disabled={!state.oneCardFlipped}
-   >
-     Open a new pack
-   </Button>
- </main>
+  <main className="w-full h-full flex flex-col justify-center items-center gap-3">
+    <div className="flex flex-wrap gap-3 max-w-[600px] items-center justify-center">
+      {state.cards.map((card) => (
+        <BoosterCard
+          key={card.key}
+          card={card}
+          onFlip={handleCardFlip}
+        />
+      ))}
+    </div>
+    <Button
+      onClick={() =>
+        dispatch({
+          type: "openNewPack",
+        })
+      }
+      disabled={!state.oneCardFlipped}
+    >
+      Open a new pack
+    </Button>
+  </main>
  );
 }
