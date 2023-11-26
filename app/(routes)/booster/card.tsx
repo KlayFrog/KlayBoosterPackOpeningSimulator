@@ -8,44 +8,49 @@ import { cn } from "../utils";
 import { on } from "events";
 
 export type BoosterCardProps = {
-  card: CardType;
-  onFlip?: () => void;
+ card: CardType;
+ onFlip?: (isFlipped: boolean) => void;
 };
 
 export const BoosterCard = ({ card, onFlip }: BoosterCardProps) => {
-  const [displayedSide, setDisplayedSide] = useState<"front" | "back">("back");
+ const [displayedSide, setDisplayedSide] = useState<"front" | "back">("back");
+ const [isFlipped, setIsFlipped] = useState(false);
 
-  return (
-    <div
-      className={cn(
-        "w-[128px] h-[96px] relative transition duration-500",
-        styles.cardContainer,
-        {
-          [styles.cardShowBack]: displayedSide === "back",
-        }
-      )}
-      onClick={() => {
-        setDisplayedSide("front");
-        onFlip?.();
-      }}
-    >
-      <Image
-        src={getCardFrontImageUrl(card)}
-        alt={`Card with id ${card.id}`}
-        width={128}
-        height={96}
-        className={cn("pixelated absolute inset-0", styles.cardFront)}
-      />
-      <Image
-        src={getCardBackImageUrl(card)}
-        alt={`Card with id ${card.id}`}
-        width={128}
-        height={96}
-        className={cn("pixelated absolute inset-0", styles.cardBack)}
-      />
-    </div>
-  );
+ const handleFlip = () => {
+   setDisplayedSide("front");
+   setIsFlipped(true);
+   onFlip?.(isFlipped);
+ };
+
+ return (
+   <div
+     className={cn(
+       "w-[128px] h-[96px] relative transition duration-500",
+       styles.cardContainer,
+       {
+         [styles.cardShowBack]: displayedSide === "back",
+       }
+     )}
+     onClick={handleFlip}
+   >
+     <Image
+       src={getCardFrontImageUrl(card)}
+       alt={`Card with id ${card.id}`}
+       width={128}
+       height={96}
+       className={cn("pixelated absolute inset-0", styles.cardFront)}
+     />
+     <Image
+       src={getCardBackImageUrl(card)}
+       alt={`Card with id ${card.id}`}
+       width={128}
+       height={96}
+       className={cn("pixelated absolute inset-0", styles.cardBack)}
+     />
+   </div>
+ );
 };
+
 
 const getCardImageDirectory = (card: CardType) => {
   switch (card.category) {

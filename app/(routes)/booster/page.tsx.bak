@@ -1,44 +1,11 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
-import { useState } from "react";
+import { Button } from "@/app/_components/button";
 import { BoosterCard } from "./card";
+import { getRandomBooster } from "./card.utils";
+import { useReducer, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 import { CardType } from "./card.model";
-
-export default function Home() {
- const [allCardsFlipped, setAllCardsFlipped] = useState(false);
- const cards: CardType[] = []; // replace this with your actual cards
-
- const handleCardFlip = (isFlipped: boolean) => {
-   if (cards.every(card => card.isFlipped)) {
-     setAllCardsFlipped(true);
-   }
- };
-
- return (
-   <main className="w-full h-full flex justify-center items-center">
-     <Link href="/booster">
-       <Image
-         src="/images/main.png"
-         alt="Main Image"
-         width={128}
-         height={192}
-         className="pixelated"
-         draggable={false}
-       />
-     </Link>
-     {cards.map(card => (
-       <BoosterCard
-         key={card.id}
-         card={card}
-         onFlip={handleCardFlip}
-       />
-     ))}
-     <button disabled={!allCardsFlipped}>Click me</button>
-   </main>
- );
-}
 
 type BoosterState = {
   cards: (CardType & { key: string })[];
