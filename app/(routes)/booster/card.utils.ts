@@ -2,14 +2,17 @@ import { ALL_CARDS } from "./card.data";
 import { CardCategoryType, CardType } from "./card.model";
 
 const getRandomCards = ({
-  cards,
-  count,
+ cards,
+ count,
 }: {
-  cards: CardType[];
-  count: number;
+ cards: CardType[];
+ count: number;
 }) => {
-  const shuffled = cards.sort(() => 0.5 - Math.random());
-  return shuffled.slice(0, count);
+ for (let i = cards.length - 1; i > 0; i--) {
+   const j = Math.floor(Math.random() * (i + 1));
+   [cards[i], cards[j]] = [cards[j], cards[i]];
+ }
+ return cards.slice(0, count);
 };
 
 const BOOSTER_STRUCTURE: [CardCategoryType, number][] = [
