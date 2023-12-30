@@ -17,7 +17,7 @@ const getRandomCards = ({
 
 const BOOSTER_STRUCTURE: [CardCategoryType, number][] = [
   ["common", 5],
-  ["special", 1],
+  ["special", 3],
   ["energy", 1],
 ];
 

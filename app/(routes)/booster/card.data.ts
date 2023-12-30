@@ -10,7 +10,7 @@ const SPECIAL_CARDS: CardType[] = Array.from({ length: 16 }, (_, i) => ({
   category: "special",
   id: i + 1,
 }));
-const COMMON_CARDS: CardType[] = Array.from({ length: 23 }, (_, i) => ({
+const COMMON_CARDS: CardType[] = Array.from({ length: 24 }, (_, i) => ({
   category: "common",
   id: i + 1,
 }));
