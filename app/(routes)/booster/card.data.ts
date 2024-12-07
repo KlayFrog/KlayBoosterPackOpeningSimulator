@@ -6,7 +6,7 @@ const ENERGY_CARDS: CardType[] = Array.from({ length: 10 }, (_, i) => ({
   id: i + 1,
   category: "energy",
 }));
-const SPECIAL_CARDS: CardType[] = Array.from({ length: 57 }, (_, i) => ({
+const SPECIAL_CARDS: CardType[] = Array.from({ length: 63 }, (_, i) => ({
   category: "special",
   id: i + 1,
 }));
