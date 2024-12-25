@@ -52,9 +52,19 @@ const getCardImageDirectory = (card: CardType) => {
       return `/images/cards/common`;
     case "energy":
       return `/images/cards/energy`;
-    case "special":
+	case "commonshiny":
+      return `/images/cards/commonshiny`;
+    case "lowres":
+      return `/images/cards/lowres`;
+	case "lowresnagaba":
+      return `/images/cards/lowresnagaba`;
+    case "lowresnagabashiny":
+      return `/images/cards/lowresnagabashiny`;
+	case "lowresprof":
+      return `/images/cards/lowresprof`;
+    case "lowresshiny":
     default:
-      return `/images/cards/special`;
+      return `/images/cards/lowresshiny`;
   }
 };
 

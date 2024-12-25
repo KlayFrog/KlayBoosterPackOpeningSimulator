@@ -6,17 +6,42 @@ const ENERGY_CARDS: CardType[] = Array.from({ length: 10 }, (_, i) => ({
   id: i + 1,
   category: "energy",
 }));
-const SPECIAL_CARDS: CardType[] = Array.from({ length: 63 }, (_, i) => ({
-  category: "special",
+const COMMON_CARDS: CardType[] = Array.from({ length: 53 }, (_, i) => ({
+  category: "common",
   id: i + 1,
 }));
-const COMMON_CARDS: CardType[] = Array.from({ length: 59 }, (_, i) => ({
-  category: "common",
+const COMMONSHINY_CARDS: CardType[] = Array.from({ length: 7 }, (_, i) => ({
+  category: "commonshiny",
+  id: i + 1,
+}));
+const LOWRES_CARDS: CardType[] = Array.from({ length: 44 }, (_, i) => ({
+  category: "lowres",
+  id: i + 1,
+}));
+const LOWRESNAGABA_CARDS: CardType[] = Array.from({ length: 10 }, (_, i) => ({
+  category: "lowresnagaba",
+  id: i + 1,
+}));
+const LOWRESNAGABASHINY_CARDS: CardType[] = Array.from({ length: 10 }, (_, i) => ({
+  category: "lowresnagabashiny",
+  id: i + 1,
+}));
+const LOWRESPROF_CARDS: CardType[] = Array.from({ length: 7 }, (_, i) => ({
+  category: "lowresprof",
+  id: i + 1,
+}));
+const LOWRESSHINY_CARDS: CardType[] = Array.from({ length: 7 }, (_, i) => ({
+  category: "lowresshiny",
   id: i + 1,
 }));
 
 export const ALL_CARDS: CardType[] = [
   ...ENERGY_CARDS,
-  ...SPECIAL_CARDS,
   ...COMMON_CARDS,
+  ...COMMONSHINY_CARDS,
+  ...LOWRES_CARDS,
+  ...LOWRESNAGABA_CARDS,
+  ...LOWRESNAGABASHINY_CARDS,
+  ...LOWRESPROF_CARDS,
+  ...LOWRESSHINY_CARDS,
 ];
