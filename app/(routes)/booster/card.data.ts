@@ -10,7 +10,7 @@ const COMMON_CARDS: CardType[] = Array.from({ length: 53 }, (_, i) => ({
   category: "common",
   id: i + 1,
 }));
-const COMMONSHINY_CARDS: CardType[] = Array.from({ length: 7 }, (_, i) => ({
+const COMMONSHINY_CARDS: CardType[] = Array.from({ length: 10 }, (_, i) => ({
   category: "commonshiny",
   id: i + 1,
 }));
@@ -30,7 +30,7 @@ const LOWRESPROF_CARDS: CardType[] = Array.from({ length: 7 }, (_, i) => ({
   category: "lowresprof",
   id: i + 1,
 }));
-const LOWRESSHINY_CARDS: CardType[] = Array.from({ length: 7 }, (_, i) => ({
+const LOWRESSHINY_CARDS: CardType[] = Array.from({ length: 10 }, (_, i) => ({
   category: "lowresshiny",
   id: i + 1,
 }));
